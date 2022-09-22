@@ -23,6 +23,9 @@ class DepartmentSeeder extends Seeder
             'Kadra',
             'Obsługa klienta',
             'Marketing i sprzedaż',
+            'Szkolenia',
+            'Inwestycji',
+
         ];
 
         foreach ($departmentNames as $departmentName) {

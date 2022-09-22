@@ -15,27 +15,21 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
+        for ($i = 0; $i < 25; $i++) {
+            User::factory()
+                ->create()
+                ->assignRole('employee');
+        }
+
         User::factory()->create([
-            'name' => fake()->firstName,
-            'surname' => fake()->lastName,
-            'phone_number' => '+48' . fake()->randomNumber(9),
-            'description' => fake()->text(200),
             'email' => 'employee@employeesdir.test',
         ])->assignRole('employee');
 
         User::factory()->create([
-            'name' => fake()->firstName,
-            'surname' => fake()->lastName,
-            'phone_number' => '+48' . fake()->randomNumber(9),
-            'description' => fake()->text(200),
             'email' => 'admin@employeesdir.test',
         ])->assignRole('admin');
 
         User::factory()->create([
-            'name' => fake()->firstName,
-            'surname' => fake()->lastName,
-            'phone_number' => '+48' . fake()->randomNumber(9),
-            'description' => fake()->text(200),
             'email' => 'superadmin@employeesdir.test',
         ])->assignRole('Super-Admin');
     }

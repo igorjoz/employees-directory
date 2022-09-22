@@ -21,10 +21,10 @@ class DepartmentUserSeeder extends Seeder
         $departments = Department::get();
 
         foreach ($users as $user) {
-            $amountOfDepartments = fake()->numberBetween(1, 5);
+            $amountOfDepartments = fake()->numberBetween(1, 4);
 
             for ($i = 0; $i < $amountOfDepartments; $i++) {
-                $randomDepartmentId = fake()->numberBetween(0, 6);
+                $randomDepartmentId = fake()->numberBetween(0, 8);
                 $randomDepartment = $departments[$randomDepartmentId];
                 $user->departments()->syncWithoutDetaching($randomDepartment);
             }
