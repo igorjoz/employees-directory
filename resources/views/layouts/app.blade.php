@@ -32,7 +32,7 @@
                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
                     <img src="{{ Storage::url(Auth::user()->image_path) }}"
                          class="user-image img-circle elevation-2" alt="User Image">
-                    <span class="d-none d-md-inline">{{ Auth::user()->name }}</span>
+                    <span class="d-none d-md-inline">{{ Auth::user()->name }} {{ Auth::user()->surname }}</span>
                 </a>
 
                 <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
@@ -40,14 +40,17 @@
                     <!-- User image -->
                     <li class="user-header bg-primary">
                         <img src="{{ Storage::url(Auth::user()->image_path) }}"
-                             class="img-circle elevation-2"
-                             alt="User Image">
-                        <p>
-                            {{ Auth::user()->name }}
-                            <small>
-                                Użytkownik serwisu od {{ Auth::user()->created_at->format('M. Y') }}
-                            </small>
-                        </p>
+                            class="img-circle elevation-2"
+                            alt="User Image">
+
+                            <p>
+                                <a href="{{ route('user.show', $user->id) }}" class="panel__link panel__link--white">
+                                {{ Auth::user()->name }} {{ Auth::user()->surname }}
+                                </a>
+                                <small>
+                                    Użytkownik serwisu od {{ Auth::user()->created_at->format('M. Y') }}
+                                </small>
+                            </p>
                     </li>
 
                     <!-- Menu Footer-->

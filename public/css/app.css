@@ -41782,3 +41782,13 @@ a.text-muted:hover {
 .panel__user-image {
   max-width: 60px;
 }
+.panel__link {
+  text-decoration: underline;
+}
+.panel__link--white {
+  color: white;
+}
+.panel__link--white:hover {
+  color: white;
+  text-decoration: underline;
+}

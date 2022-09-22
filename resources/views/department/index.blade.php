@@ -14,6 +14,8 @@
                     <th scope="col" class="table__header">ID</th>
                     <th scope="col" class="table__header">Nazwa</th>
                     <th scope="col" class="table__header">Opis</th>
+                    <th scope="col" class="table__header">Ilość pracowników</th>
+                    <th scope="col" class="table__header">Pracownicy działu</th>
                     <th scope="col" class="table__header">Data stworzenia</th>
                     <th scope="col" class="table__header">Akcje</th>
                 </tr>
@@ -26,11 +28,26 @@
                     </th>
     
                     <td class="table__cell table__cell--important">
-                        {{ $department->name }}
+                        <a href="{{ route('department.show', $department->id) }}">
+                            {{ $department->name }}
+                        </a>
                     </td>
 
                     <td class="table__cell table__cell--important">
                         {{ $department->description }}
+                    </td>
+
+                    <td class="table__cell table__cell--important">
+                        {{ $department->users_count }}
+                    </td>
+
+                    <td class="table__cell table__cell--important">
+                        @foreach($department->users as $user)
+                        <a href="{{ route('user.show', $user->id) }}">
+                            {{ $user->name }} {{ $user->surname }};
+                        </a>
+                        @endforeach
+                        <br>
                     </td>
     
                     <td class="table__cell">

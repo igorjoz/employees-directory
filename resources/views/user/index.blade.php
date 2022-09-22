@@ -17,8 +17,10 @@
                     <th scope="col" class="table__header">Email</th>
                     <th scope="col" class="table__header">Numer telefonu</th>
                     <th scope="col" class="table__header">Opis</th>
-                    <th scope="col" class="table__header">Data stworzenia</th>
+                    <th scope="col" class="table__header">Rola</th>
+                    <th scope="col" class="table__header">Ilość działów</th>
                     <th scope="col" class="table__header">Działy</th>
+                    <th scope="col" class="table__header">Data stworzenia</th>
                     <th scope="col" class="table__header">Akcje</th>
                 </tr>
             </thead>
@@ -38,7 +40,9 @@
                     </td>
     
                     <td class="table__cell table__cell--important">
-                        {{ $user->email }}
+                        <a href="{{ route('user.show', $user->id) }}">
+                            {{ $user->email }}
+                        </a>
                     </td>
 
                     <td class="table__cell table__cell--important">
@@ -48,16 +52,26 @@
                     <td class="table__cell table__cell--important">
                         {{ $user->description }}
                     </td>
-    
-    
+
                     <td class="table__cell">
-                        {{ $user->created_at->format('Y-m-d') }}
+                        {{ $user->getRoleNames()[0] }}
+                    </td>
+
+                    <td class="table__cell">
+                        {{ $user->departments_count }}
                     </td>
 
                     <td class="table__cell">
                         @foreach($user->departments as $department)
-                        {{ $department->name }}<br>
+                        <a href="{{ route('department.show', $department->id) }}">
+                            {{ $department->name }};
+                        </a>
+                        <br>
                         @endforeach
+                    </td>
+
+                    <td class="table__cell">
+                        {{ $user->created_at->format('Y-m-d') }}
                     </td>
     
                     <td class="table__cell">

@@ -6,7 +6,10 @@
         <h1 class="text-black panel__welcome-header">
             Zalogowano jako 
             <img src="{{ Storage::url($user->image_path) }}" class="panel__user-image" alt="user image">
-            <b>{{ $user->name }} {{ $user->surname }}</b> o id: <b>{{ $user->id }}</b>
+                <a href="{{ route('user.show', $user->id) }}">
+                    <b>{{ $user->name }} {{ $user->surname }}</b>
+                </a>
+            o id: <b>{{ $user->id }}</b>
         </h1>
 
         <h2 class="panel__role-header">

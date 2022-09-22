@@ -20,4 +20,17 @@
     &__user-image {
         max-width: 60px;
     }
+
+    &__link {
+        text-decoration: underline;
+
+        &--white {
+            color: white;
+
+            &:hover {
+                color: white;
+                text-decoration: underline;
+            }
+        }
+    }
 }
