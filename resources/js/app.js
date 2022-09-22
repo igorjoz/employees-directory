@@ -1,1 +1,2 @@
-import './bootstrap';
+require('./bootstrap');
+require('admin-lte');
