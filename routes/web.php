@@ -26,9 +26,7 @@ Route::get('/', [HomeController::class, 'index'])
     ->name('home.index');
 
 // * user resource
-Route::resource('user', UserController::class, [
-    // 'except' => ['index', 'show', 'create', 'store'],
-]);
+Route::resource('user', UserController::class);
 
-Route::get('/dzial', [DepartmentController::class, 'index'])
-    ->name('department.index');
+// * department resource
+Route::resource('department', DepartmentController::class);

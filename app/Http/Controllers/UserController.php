@@ -14,7 +14,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::with('departments')->get();
+        $users = User::withCount('departments')->get();
 
         return view(
             'user.index',
@@ -53,7 +53,12 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        //
+        return view(
+            'user.show',
+            [
+                'user' => $user,
+            ]
+        );
     }
 
     /**
