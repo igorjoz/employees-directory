@@ -30,24 +30,30 @@
         <ul class="navbar-nav ml-auto">
             <li class="nav-item dropdown user-menu">
                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
-                    <img src="https://assets.infyom.com/logo/blue_logo_150x150.png"
+                    <img src="{{ Storage::url(Auth::user()->image_path) }}"
                          class="user-image img-circle elevation-2" alt="User Image">
                     <span class="d-none d-md-inline">{{ Auth::user()->name }}</span>
                 </a>
+
                 <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+
                     <!-- User image -->
                     <li class="user-header bg-primary">
-                        <img src="https://assets.infyom.com/logo/blue_logo_150x150.png"
+                        <img src="{{ Storage::url(Auth::user()->image_path) }}"
                              class="img-circle elevation-2"
                              alt="User Image">
                         <p>
                             {{ Auth::user()->name }}
-                            <small>Użytkownik serwisu od {{ Auth::user()->created_at->format('M. Y') }}</small>
+                            <small>
+                                Użytkownik serwisu od {{ Auth::user()->created_at->format('M. Y') }}
+                            </small>
                         </p>
                     </li>
+
                     <!-- Menu Footer-->
                     <li class="user-footer">
-                        <a href="#" class="btn btn-default btn-flat">Profil</a>
+                        <a href="{{ route('user.show', Auth::user()->id) }}" class="btn btn-default btn-flat">Profil</a>
+
                         <a href="#" class="btn btn-default btn-flat float-right"
                            onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                             Wyloguj się
@@ -70,11 +76,8 @@
     </div>
 
     <!-- Main Footer -->
-    <footer class="main-footer">
-        <div class="float-right d-none d-sm-block">
-            <b>Version</b> 3.0.5
-        </div>
-        <strong>Copyright &copy; 2014-2022 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights
+    <footer class="main-footer">        
+        <strong>Copyright &copy; 2022 <a href="igorjozefowicz.com">EmployeesDir</a>.</strong> All rights
         reserved.
     </footer>
 </div>
