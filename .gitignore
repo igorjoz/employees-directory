@@ -1,16 +1,26 @@
+# Visual Studio Code settings
+/.idea
+/.vscode
+
+# npm & composer packages
 /node_modules
-/public/build
-/public/hot
-/public/storage
-/storage/*.key
 /vendor
+
+# secret data
 .env
 .env.backup
+/storage/*.key
+
+# storage, images, builds
+/public/storage
+/public/build
+/public/hot
+
+# other
 .phpunit.result.cache
 Homestead.json
 Homestead.yaml
 auth.json
 npm-debug.log
 yarn-error.log
-/.idea
-/.vscode
+
