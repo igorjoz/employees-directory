@@ -31,7 +31,7 @@ class DepartmentController extends Controller
      */
     public function create()
     {
-        //
+        return view('department.create');
     }
 
     /**
@@ -42,7 +42,15 @@ class DepartmentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = request()->validate([
+            'name' => ['required', 'max:100'],
+            'description' => ['required', 'max:1000000'],
+        ]);
+
+        $department = Department::create($validated);
+
+        return redirect()->route('department.index')
+            ->with('flashMessage', 'Dodano dział "' . $department->name . '"');
     }
 
     /**
@@ -53,10 +61,13 @@ class DepartmentController extends Controller
      */
     public function show(Department $department)
     {
+        $departmentUsers = $department->users;
+
         return view(
             'department.show',
             [
                 'department' => $department,
+                'departmentUsers' => $departmentUsers,
             ]
         );
     }
@@ -69,7 +80,12 @@ class DepartmentController extends Controller
      */
     public function edit(Department $department)
     {
-        //
+        return view(
+            'department.edit',
+            [
+                'department' => $department,
+            ]
+        );
     }
 
     /**
@@ -81,7 +97,15 @@ class DepartmentController extends Controller
      */
     public function update(Request $request, Department $department)
     {
-        //
+        $validated = request()->validate([
+            'name' => ['required', 'max:100'],
+            'description' => ['required', 'max:1000000'],
+        ]);
+
+        $department->update($validated);
+
+        return redirect()->route('department.show', $department->id)
+            ->with('flashMessage', 'Zmodyfikowano dział o id "' . $department->id . '"');
     }
 
     /**
@@ -92,6 +116,10 @@ class DepartmentController extends Controller
      */
     public function destroy(Department $department)
     {
-        //
+        $departmentName = $department->name;
+        $department->delete();
+
+        return redirect()->route('department.index')
+            ->with('flashMessage', 'Usunięto dział "' . $departmentName . '"');
     }
 }
