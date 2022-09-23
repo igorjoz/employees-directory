@@ -22,15 +22,15 @@ class UserSeeder extends Seeder
         }
 
         User::factory()->create([
-            'email' => 'employee@employeesdir.test',
+            'email' => 'employee@igorjoz.com',
         ])->assignRole('employee');
 
         User::factory()->create([
-            'email' => 'admin@employeesdir.test',
+            'email' => 'admin@igorjoz.com',
         ])->assignRole('admin');
 
         User::factory()->create([
-            'email' => 'superadmin@employeesdir.test',
+            'email' => 'superadmin@igorjoz.com',
         ])->assignRole('Super-Admin');
     }
 }
