@@ -1,9 +1,11 @@
+// * Bootstrap
+@import '~admin-lte/build/scss/adminlte';
+
 // * Variables & Page (general adjustments)
 @import 'variables';
 @import 'page';
 
-// * Bootstrap
-@import '~admin-lte/build/scss/adminlte';
-
 // * Components
 @import 'components/panel';
+@import 'components/crud';
+@import 'components/button';

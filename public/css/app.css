@@ -1,8 +1,4 @@
 @charset "UTF-8";
-html {
-  font-size: 18px;
-}
-
 /*!
  *   AdminLTE v3.1.0
  *   Author: Colorlib
@@ -41765,11 +41761,14 @@ a.text-muted:hover {
   color: #3f474e;
 }
 
+html {
+  font-size: 18px;
+}
+
 .panel__text-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
   padding: 20px 5%;
 }
 .panel__welcome-header {
@@ -41791,4 +41790,216 @@ a.text-muted:hover {
 .panel__link--white:hover {
   color: white;
   text-decoration: underline;
+}
+
+.crud__info-section-wrapper {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 25px;
+}
+.crud__info-section-header {
+  font-size: 2rem;
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+.crud__info-wrapper {
+  display: flex;
+}
+.crud__info-text {
+  font-size: 1.8rem;
+}
+.crud__form-header {
+  font-size: 2.6rem;
+}
+.crud__section-header {
+  font-size: 2.2rem;
+}
+.crud__section-header-hint {
+  font-size: 1.8rem;
+}
+.crud__stacked-attributes-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.crud__attribute-wrapper {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+.crud__checkbox {
+  margin-right: 10px;
+  width: 19px;
+  height: 19px;
+}
+.crud__label {
+  display: flex;
+  font-size: 1.6rem;
+  font-weight: 500;
+  max-width: 50ch;
+}
+.crud__label--close {
+  margin: 0;
+}
+.crud__label--radio {
+  display: block;
+  font-size: 1.6rem;
+  margin-left: 9px;
+}
+.crud__label--order-header {
+  font-size: 2rem;
+}
+.crud__label--order {
+  max-width: 70ch;
+}
+.crud__label--order-radio {
+  display: block;
+  font-size: 2rem;
+  margin-left: 10px;
+}
+.crud__image {
+  max-width: 100%;
+  max-height: 250px;
+  border-radius: 6px;
+  margin-bottom: 5px;
+}
+.crud__select {
+  font-size: 1.4rem;
+  padding: 8px;
+  max-width: 50ch;
+}
+.crud__select--invalid {
+  border-color: rgb(255, 0, 0);
+}
+.crud__input {
+  font-size: 1.3rem;
+  padding: 10px;
+  max-width: 50ch;
+}
+.crud__input--invalid {
+  border-color: red;
+}
+.crud__radio-option-wrapper {
+  display: flex;
+  align-items: center;
+}
+.crud__radio-option-wrapper--delivery-and-payment-method:not(:first-of-type) {
+  margin-top: 12px;
+}
+.crud__radio-input {
+  font-size: 1.5rem;
+}
+.crud__radio-input--big {
+  font-size: 2.1rem;
+  margin: 0;
+}
+.crud__text-area {
+  font-size: 1.2rem;
+  padding: 10px;
+}
+.crud__text-area--invalid {
+  border-color: red;
+}
+.crud__error-box {
+  margin-bottom: 10px;
+}
+.crud__error {
+  display: block;
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: red;
+  margin-top: 3px;
+}
+.crud__error--big {
+  font-size: 2.4rem;
+}
+
+.search-input {
+  font-size: 1.6rem;
+  padding: 5px 10px;
+  width: 100%;
+}
+
+.button {
+  padding: 7px 9px;
+  font-size: 1.4rem;
+  font-weight: 500;
+  color: black;
+  border-radius: 10px;
+  box-shadow: 0 4px 3px 2px whitesmoke;
+  transition-timing-function: ease-in-out;
+  transition: background-color 0.06s, box-shadow 0.04s;
+}
+.button:hover {
+  background-color: #8fec00;
+  color: black;
+  box-shadow: 0 3px 2px 1px rgb(175, 175, 175);
+}
+.button:focus {
+  background-color: #86dc00;
+  color: black;
+  box-shadow: 0 3px 1px 2px rgb(175, 175, 175);
+}
+.button__submit {
+  font-size: 1.6rem;
+  font-weight: 500;
+  padding: 6px 20px;
+}
+.button__submit--edit {
+  color: black;
+  background-color: yellow;
+}
+.button__submit--edit:hover {
+  background-color: #ebeb00;
+  color: black;
+}
+.button__submit--edit:focus {
+  background-color: #e0e000;
+  color: black;
+}
+.button__submit--create {
+  background-color: greenyellow;
+}
+.button__submit--create:hover {
+  background-color: #8fec00;
+  color: black;
+}
+.button__submit--create:focus {
+  background-color: #86dc00;
+  color: black;
+}
+.button__submit--delete {
+  color: white;
+  background-color: red;
+  margin-top: 15px;
+  transition: 0.05s;
+}
+.button__submit--delete:hover {
+  color: white;
+  background-color: red;
+  opacity: 0.65;
+}
+.button__submit--delete:focus {
+  color: white;
+  background-color: red;
+}
+.button .button__filter {
+  padding: 6px 0;
+  margin-left: 8px;
+  margin-right: 8px;
+  margin-top: 10px;
+  font-size: 1.5rem;
+  font-weight: 500;
+}
+.button .button__clear-filters {
+  font-size: 1.5rem;
+  margin-top: 2px;
+}
+.button .button__popover--active {
+  color: white;
+  background-color: orangered;
+}
+.button .button__popover--active:hover {
+  color: white;
+  background-color: #e03d00;
 }

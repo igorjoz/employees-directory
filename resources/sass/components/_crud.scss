@@ -1,0 +1,163 @@
+.crud {
+    &__info-section-wrapper {
+        display: flex;
+        flex-direction: column;
+
+        margin-bottom: 25px;
+    }
+
+    &__info-section-header {
+        font-size: 2rem;
+        font-weight: 600;
+        margin-bottom: 16px;
+    }
+
+    &__info-wrapper {
+        display: flex;
+    }
+
+    &__info-text {
+        font-size: 1.8rem;
+    }
+
+    &__form-header {
+        font-size: 2.6rem;
+    }
+
+    &__section-header {
+        font-size: 2.2rem;
+    }
+
+    &__section-header-hint {
+        font-size: 1.8rem;
+    }
+
+    &__stacked-attributes-wrapper {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    &__attribute-wrapper {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 20px;
+    }
+
+    &__checkbox {
+        margin-right: 10px;
+        width: 19px;
+        height: 19px;
+    }
+
+    &__label {
+        display: flex;
+
+        font-size: 1.6rem;
+        font-weight: 500;
+        max-width: 50ch;
+
+        &--close {
+            margin: 0;
+        }
+
+        &--radio {
+            display: block;
+            font-size: 1.6rem;
+            margin-left: 9px;
+        }
+
+        &--order-header {
+            font-size: 2rem;
+        }
+
+        &--order {
+            max-width: 70ch;
+        }
+
+        &--order-radio {
+            display: block;
+            font-size: 2rem;
+            margin-left: 10px;
+        }
+    }
+
+    &__image {
+        max-width: 100%;
+        max-height: 250px;
+
+        border-radius: 6px;
+        margin-bottom: 5px;
+    }
+
+    &__select {
+        font-size: 1.4rem;
+        padding: 8px;
+        max-width: 50ch;
+
+        &--invalid {
+            border-color: rgb(255, 0, 0);
+        }
+    }
+
+    &__input {
+        font-size: 1.3rem;
+        padding: 10px;
+        max-width: 50ch;
+
+        &--invalid {
+            border-color: red;
+        }
+    }
+
+    &__radio-option-wrapper {
+        display: flex;
+        align-items: center;
+
+        &--delivery-and-payment-method {
+            &:not(:first-of-type) {
+                margin-top: 12px;
+            }
+        }
+    }
+
+    &__radio-input {
+        font-size: 1.5rem;
+
+        &--big {
+            font-size: 2.1rem;
+            margin: 0;
+        }
+    }
+
+    &__text-area {
+        font-size: 1.2rem;
+        padding: 10px;
+
+        &--invalid {
+            border-color: red;
+        }
+    }
+
+    &__error-box {
+        margin-bottom: 10px;
+    }
+
+    &__error {
+        display: block;
+        font-size: 1.1rem;
+        font-weight: 500;
+        color: red;
+        margin-top: 3px;
+
+        &--big {
+            font-size: 2.4rem;
+        }
+    }
+}
+
+.search-input {
+    font-size: 1.6rem;
+    padding: 5px 10px;
+    width: 100%;
+}

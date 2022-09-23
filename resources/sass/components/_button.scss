@@ -1,0 +1,110 @@
+.button {
+    padding: 7px 9px;
+    font-size: 1.4rem;
+    font-weight: 500;
+    color: black;
+    border-radius: 10px;
+    box-shadow: 0 4px 3px 2px whitesmoke;
+
+    transition-timing-function: ease-in-out;
+    transition:
+        background-color .06s,
+        box-shadow .04s;
+
+    &:hover {
+        background-color: darken(greenyellow, 13%);
+        color: black;
+        box-shadow: 0 3px 2px 1px rgb(175, 175, 175);
+    }
+
+    &:focus {
+        background-color: darken(greenyellow, 16%);
+        color: black;
+        box-shadow: 0 3px 1px 2px rgb(175, 175, 175);
+    }
+
+    &__submit {
+        font-size: 1.6rem;
+        font-weight: 500;
+        padding: 6px 20px;
+
+        &--edit {
+            color: black;
+            background-color: yellow;
+
+            &:hover {
+                background-color: darken(yellow, 4%);
+                color: black;
+            }
+
+            &:focus {
+                background-color: darken(yellow, 6%);
+                color: black;
+            }
+        }
+
+        &--create {
+            background-color: greenyellow;
+
+            &:hover {
+                background-color: darken(greenyellow, 13%);
+                color: black;
+            }
+
+            &:focus {
+                background-color: darken(greenyellow, 16%);
+                color: black;
+            }
+        }
+
+        &--delete {
+            color: white;
+            background-color: red;
+            margin-top: 15px;
+
+            transition: .05s;
+
+            &:hover {
+                color: white;
+                background-color: red;
+                opacity: 0.65;
+            }
+
+            &:focus {
+                color: white;
+                background-color: red;
+            }
+        }
+    }
+
+    .button {
+
+        // * filter
+        &__filter {
+            padding: 6px 0;
+            margin-left: 8px;
+            margin-right: 8px;
+            margin-top: 10px;
+            font-size: 1.5rem;
+            font-weight: 500;
+        }
+
+        &__clear-filters {
+            font-size: 1.5rem;
+            margin-top: 2px;
+        }
+
+        // * popover
+        &__popover {
+            &--active {
+                color: white;
+                background-color: orangered;
+
+                &:hover {
+                    color: white;
+                    background-color: darken(orangered, 6%);
+                }
+            }
+        }
+    }
+}
