@@ -56,16 +56,24 @@
     
                     <td class="table__cell">
                         <div class="table__actions-wrapper">
-                            akcje
-                            {{-- @listActionShow(array_merge($defaultDataArray, ['id' => $brand->id, 'object' => $brand]))
-                            @endlistActionShow
-    
-                            @listActionEdit(array_merge($defaultDataArray, ['id' => $brand->id]))
-                            @endlistActionEdit
-    
-    
-                            @listActionDelete(array_merge($defaultDataArray, ['id' => $brand->id]))
-                            @endlistActionDelete --}}
+                            @if (Auth::user()->hasRole('admin'))
+                            <a href="{{ route('department.edit', $department->id) }}">
+                            Edytuj
+                            </a>
+
+                            <form method="post" action="{{ route('department.destroy', $department->id) }}">
+                                @method('DELETE')
+                                @csrf
+                                
+                                <button class="button button__submit button__submit--delete button__submit--small">
+                                    Usuń
+                                </button>
+                            </form>
+                            @else
+                            <a href="{{ route('department.show', $department->id) }}">
+                            Podgląd
+                            </a>
+                            @endif
                         </div>
                     </td>
                 </tr>
