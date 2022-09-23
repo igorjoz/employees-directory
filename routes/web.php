@@ -19,14 +19,17 @@ use Illuminate\Support\Facades\Route;
 
 // * Authentication
 Auth::routes([
-    'register' => false,
+    // 'register' => false,
 ]);
 
-Route::get('/', [HomeController::class, 'index'])
-    ->name('home.index');
+// * check is user is logged in
+Route::middleware(['auth'])->group(function () {
+    Route::get('/', [HomeController::class, 'index'])
+        ->name('home.index');
 
-// * user resource
-Route::resource('user', UserController::class);
+    // * user resource
+    Route::resource('user', UserController::class);
 
-// * department resource
-Route::resource('department', DepartmentController::class);
+    // * department resource
+    Route::resource('department', DepartmentController::class);
+});
