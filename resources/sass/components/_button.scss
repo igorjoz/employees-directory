@@ -1,3 +1,5 @@
+@import '../variables';
+
 .button {
     padding: 7px 9px;
     font-size: 1.4rem;
@@ -24,9 +26,9 @@
     }
 
     &__submit {
-        font-size: 1.6rem;
+        font-size: 1.4rem;
         font-weight: 500;
-        padding: 6px 20px;
+        padding: 2px 12px;
 
         &--edit {
             color: black;
@@ -59,21 +61,25 @@
 
         &--delete {
             color: white;
-            background-color: red;
-            margin-top: 15px;
+            background-color: $red;
 
-            transition: .05s;
+            transition: .04s;
 
             &:hover {
                 color: white;
-                background-color: red;
-                opacity: 0.65;
+                background-color: darken($red, 10%);
             }
 
             &:focus {
                 color: white;
-                background-color: red;
+                background-color: darken($red, 10%);
             }
+        }
+
+        &--small {
+            font-size: 1rem;
+            font-weight: 500;
+            padding: 0 6px;
         }
     }
 
@@ -92,19 +98,6 @@
         &__clear-filters {
             font-size: 1.5rem;
             margin-top: 2px;
-        }
-
-        // * popover
-        &__popover {
-            &--active {
-                color: white;
-                background-color: orangered;
-
-                &:hover {
-                    color: white;
-                    background-color: darken(orangered, 6%);
-                }
-            }
         }
     }
 }

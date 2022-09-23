@@ -1,3 +1,5 @@
+@import '../variables';
+
 .crud {
     &__info-section-wrapper {
         display: flex;
@@ -14,6 +16,7 @@
 
     &__info-wrapper {
         display: flex;
+        align-items: center;
     }
 
     &__info-text {
@@ -26,16 +29,6 @@
 
     &__section-header {
         font-size: 2.2rem;
-    }
-
-    &__section-header-hint {
-        font-size: 1.8rem;
-    }
-
-    &__stacked-attributes-wrapper {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
     }
 
     &__attribute-wrapper {
@@ -96,7 +89,7 @@
         max-width: 50ch;
 
         &--invalid {
-            border-color: rgb(255, 0, 0);
+            border-color: $red;
         }
     }
 
@@ -106,7 +99,7 @@
         max-width: 50ch;
 
         &--invalid {
-            border-color: red;
+            border-color: $red;
         }
     }
 
@@ -135,7 +128,7 @@
         padding: 10px;
 
         &--invalid {
-            border-color: red;
+            border-color: $red;
         }
     }
 
@@ -147,12 +140,18 @@
         display: block;
         font-size: 1.1rem;
         font-weight: 500;
-        color: red;
+        color: $red;
         margin-top: 3px;
 
         &--big {
             font-size: 2.4rem;
         }
+    }
+
+    &__button {
+        font-size: 1.6rem;
+        margin-left: 30px;
+        margin-right: 15px;
     }
 }
 
