@@ -17,10 +17,24 @@
         </h2>
 
         <h2>
-            <a href="{{ route('user.edit', $user->id) }}">
+            <a href="{{ route('user.edit_account') }}">
                 Edytuj swoje dane
             </a>
         </h2>
+
+        @if (Auth::user()->hasRole('admin'))
+        <h2>
+            <a href="{{ route('user.create') }}">
+                Stwórz nowego użytkownika
+            </a>
+        </h2>
+
+        <h2>
+            <a href="{{ route('department.create') }}">
+                Stwórz nowy dział
+            </a>
+        </h2>
+        @endif
 
     </div>
 @endsection

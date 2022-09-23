@@ -9,7 +9,11 @@
             {{ $user->name }} {{ $user->surname }}, id: {{ $user->id }}
         </h1>
 
+        @if (request()->route()->getName() == "user.edit_account")
+        <form method="POST" enctype="multipart/form-data" action="{{ route('user.update_account') }}" class="crud__form">
+        @else
         <form method="POST" enctype="multipart/form-data" action="/user/{{ $user->id }}" class="crud__form">
+        @endif
             @method('PUT')
             @csrf
         

@@ -3,17 +3,28 @@
 @section('content')
     <div class="container-fluid panel__text-container">
 
-        <h1 class="text-black panel__welcome-header">
-            Profil użytkownika
-            <img src="{{ Storage::url(Auth::user()->image_path) }}" class="panel__user-image" alt="User image">
-            {{ $user->name }} {{ $user->surname }}
+        <div class="crud__info-wrapper">
+            <h1 class="text-black panel__welcome-header">
+                Profil użytkownika
+                <img src="{{ Storage::url($user->image_path) }}" class="panel__user-image" alt="User image">
+                {{ $user->name }} {{ $user->surname }}
+            </h1>
 
             @if (Auth::user()->hasRole('admin'))
-                <a href="{{ route('user.edit', $user->id) }}">
+                <a href="{{ route('user.edit', $user->id) }}" class="crud__button">
                 Edytuj
                 </a>
+
+                <form method="post" action="/user/{{ $user->id }}">
+                    @method('DELETE')
+                    @csrf
+                    
+                    <button class="button button__submit button__submit--delete">
+                        Usuń
+                    </button>
+                </form>
             @endif
-        </h1>
+        </div>
 
         <h2>
             E-mail: {{ $user->email }}
