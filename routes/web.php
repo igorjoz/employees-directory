@@ -19,17 +19,28 @@ use Illuminate\Support\Facades\Route;
 
 // * Authentication
 Auth::routes([
-    // 'register' => false,
+    'register' => false,
 ]);
 
 // * check is user is logged in
 Route::middleware(['auth'])->group(function () {
+    Route::group(['middleware' => ['can:delete users']], function () {
+        Route::resource('user', UserController::class);
+        Route::resource('department', DepartmentController::class);
+    });
+
     Route::get('/', [HomeController::class, 'index'])
         ->name('home.index');
 
-    // * user resource
-    Route::resource('user', UserController::class);
+    Route::resource('user', UserController::class, [
+        'only' => ['index', 'show',]
+    ]);
+    Route::get('edytuj-konto', [UserController::class, 'edit'])
+        ->name('user.edit_account');
+    Route::put('edytuj-konto', [UserController::class, 'update'])
+        ->name('user.update_account');
 
-    // * department resource
-    Route::resource('department', DepartmentController::class);
+    Route::resource('department', DepartmentController::class, [
+        'only' => ['index', 'show',]
+    ]);
 });
