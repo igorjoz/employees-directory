@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use Hamcrest\Description;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 
 /**
@@ -25,7 +26,7 @@ class UserFactory extends Factory
             'phone_number' => '+48' . fake()->randomNumber(9),
             'email' => fake()->unique()->safeEmail(),
             'email_verified_at' => now(),
-            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+            'password' => Hash::make(env('EMPLOYEE_PASSWORD', 'password')),
             'remember_token' => Str::random(10),
         ];
     }

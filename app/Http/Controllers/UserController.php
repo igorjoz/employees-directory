@@ -25,8 +25,6 @@ class UserController extends Controller
     // * handle uploaded image
     protected function handleImage($image, $user, $isEdit = false)
     {
-        // $user = request('user');
-
         if ($isEdit and $user->image_path != "storage/img/user/dummy-profile-picture.png") {
             Storage::delete($user->image_path);
         }
@@ -88,13 +86,26 @@ class UserController extends Controller
             'password' => ['required', 'min:6', 'max:255'],
             'description' => ['required', 'max:1000000'],
             'phone_number' => ['required', 'max:14'],
-            'email' => ['required', 'email:rfc,dns', 'max:255'],
+            'email' => ['required', 'email:rfc,dns', 'unique:users', 'max:255'],
+            'image' => 'required',
         ]);
-
         $hashedPassword = Hash::make(request('password'));
 
-        $image = request('image');
-        $this->handleImage($image, $user);
+        if (!is_null(request('image'))) {
+            request()->validate([
+                'image' => [
+                    'required',
+                    'image',
+                    'max:15360',
+                    new ProperImageRatio(request('image')),
+                ],
+            ]);
+
+            $image = request('image');
+            $this->handleImage($image, $user);
+        } else {
+            request()->merge(['image_path' => 'img/user/dummy-profile-picture.png']);
+        }
 
         $user = User::create([
             'name' => request('name'),

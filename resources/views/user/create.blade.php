@@ -48,8 +48,7 @@
                   Hasło
                 </label>
               
-                <input type="password" name="password" id="password" value="{{ old('password') }}"
-                  class="form-control crud__input @error('password') is-invalid crud__input--invalid @enderror" required>
+                <input type="password" name="password" id="password" value="{{ old('password') }}" autocomplete="off" class="form-control crud__input @error('password') is-invalid crud__input--invalid @enderror" required>
               
                 @error('password')
                 <span class="invalid-feedback crud__error">
@@ -78,8 +77,7 @@
                   E-mail
                 </label>
               
-                <input type="email" name="email" id="email" value="{{ old('email') }}"
-                  class="form-control crud__input @error('email') is-invalid crud__input--invalid @enderror" required>
+                <input type="email" name="email" id="email" value="{{ old('email') }}" autocomplete="off" class="form-control crud__input @error('email') is-invalid crud__input--invalid @enderror" required>
               
                 @error('email')
                 <span class="invalid-feedback crud__error">
@@ -93,9 +91,7 @@
                     Numer telefonu
                 </label>
     
-                <input type="text" name="phone_number" id="phone_number" value="{{ old('phone_number') }}"
-                    autocomplete="off"
-                    class="form-control crud__input @error('phone_number') is-invalid crud__input--invalid @enderror"
+                <input type="text" name="phone_number" id="phone_number" value="{{ old('phone_number') }}" autocomplete="off" class="form-control crud__input @error('phone_number') is-invalid crud__input--invalid @enderror"
                     required>
     
                 @error('phone_number')
