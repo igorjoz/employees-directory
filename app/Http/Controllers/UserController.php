@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Rules\ProperImageRatio;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Intervention\Image\Facades\Image as Intervention;
@@ -21,11 +23,11 @@ class UserController extends Controller
 
 
     // * handle uploaded image
-    protected function handleImage($image)
+    protected function handleImage($image, $user, $isEdit = false)
     {
-        $user = request('user');
+        // $user = request('user');
 
-        if ($user->image_path != "storage/img/user/dummy-profile-picture.jpg") {
+        if ($isEdit and $user->image_path != "storage/img/user/dummy-profile-picture.png") {
             Storage::delete($user->image_path);
         }
 
@@ -36,7 +38,7 @@ class UserController extends Controller
         $image->orientate()->resize(1500, null, function ($constraint) {
             $constraint->aspectRatio();
             $constraint->upsize();
-        })->save('storage/img/user/' . $imageName, 70);
+        })->save('storage/img/user/' . $imageName, 80);
 
         $imagePath = "public/img/user/" . $imageName;
 
@@ -78,7 +80,34 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $user = request('user');
+
+        request()->validate([
+            'name' => ['required', 'max:100'],
+            'surname' => ['required', 'max:100'],
+            'password' => ['required', 'min:6', 'max:255'],
+            'description' => ['required', 'max:1000000'],
+            'phone_number' => ['required', 'max:14'],
+            'email' => ['required', 'email:rfc,dns', 'max:255'],
+        ]);
+
+        $hashedPassword = Hash::make(request('password'));
+
+        $image = request('image');
+        $this->handleImage($image, $user);
+
+        $user = User::create([
+            'name' => request('name'),
+            'surname' => request('surname'),
+            'description' => request('description'),
+            'phone_number' => request('phone_number'),
+            'email' => request('email'),
+            'image_path' => request('image_path'),
+            'password' => $hashedPassword,
+        ])->assignRole('employee');
+
+        return redirect()->route('user.index')
+            ->with('flashMessage', 'Dodano użytkownika "' . $user->name . " " . $user->surname . '"');
     }
 
     /**
@@ -105,6 +134,11 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
+        if (request()->route()->getName() == "user.edit_account") {
+            $userId = Auth::user()->id;
+            $user = User::findOrFail($userId);
+        }
+
         return view(
             'user.edit',
             [
@@ -122,6 +156,11 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
+        if (request()->route()->getName() == "user.update_account") {
+            $userId = Auth::user()->id;
+            $user = User::findOrFail($userId);
+        }
+
         $validated = request()->validate([
             'name' => ['required', 'max:100'],
             'surname' => ['required', 'max:100'],
@@ -139,10 +178,13 @@ class UserController extends Controller
                     new ProperImageRatio(request('image')),
                 ],
             ]);
+
+            $image = request('image');
+            $this->handleImage($image, $user, true);
+        } else {
+            request()->merge(['image_path' => 'img/user/dummy-profile-picture.png']);
         }
 
-        $image = request('image');
-        $this->handleImage($image);
         $validated = array_merge($validated, ['image_path' => request('image_path')]);
 
         $user->update($validated);
@@ -159,6 +201,10 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
-        //
+        $userNameAndSurname = $user->name . " " . $user->surname;
+        $user->delete();
+
+        return redirect()->route('user.index')
+            ->with('flashMessage', 'Usunięto użytkownika "' . $userNameAndSurname . '"');
     }
 }
