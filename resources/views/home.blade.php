@@ -16,5 +16,11 @@
             Twoja rola to: <b>{{ $user->getRoleNames()[0] }}</b>
         </h2>
 
+        <h2>
+            <a href="{{ route('user.edit', $user->id) }}">
+                Edytuj swoje dane
+            </a>
+        </h2>
+
     </div>
 @endsection

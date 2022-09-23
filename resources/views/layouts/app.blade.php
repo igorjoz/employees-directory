@@ -44,7 +44,7 @@
                             alt="User Image">
 
                             <p>
-                                <a href="{{ route('user.show', $user->id) }}" class="panel__link panel__link--white">
+                                <a href="{{ route('user.show', Auth::user()->id) }}" class="panel__link panel__link--white">
                                 {{ Auth::user()->name }} {{ Auth::user()->surname }}
                                 </a>
                                 <small>
