@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\UserCreated;
 use App\Models\User;
 use App\Rules\ProperImageRatio;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Intervention\Image\Facades\Image as Intervention;
@@ -50,12 +52,27 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::withCount('departments')->get();
+        $filter = request()->query('filter');
+
+        if (!empty($filter)) {
+            $users = User::sortable()
+                ->where('name', 'like', '%' . $filter . '%')
+                ->orWhere('surname', 'like', '%' . $filter . '%')
+                ->orWhere('email', 'like', '%' . $filter . '%')
+                ->orWhere('description', 'like', '%' . $filter . '%')
+                ->paginate(25);
+        } else {
+            $users = User::withCount('departments')
+                ->sortable()
+                ->paginate(25);
+        }
+
 
         return view(
             'user.index',
             [
                 'users' => $users,
+                'filter' => $filter,
             ]
         );
     }
@@ -79,6 +96,7 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $user = request('user');
+        $password = request('password');
 
         request()->validate([
             'name' => ['required', 'max:100'],
@@ -89,7 +107,7 @@ class UserController extends Controller
             'email' => ['required', 'email:rfc,dns', 'unique:users', 'max:255'],
             'image' => 'required',
         ]);
-        $hashedPassword = Hash::make(request('password'));
+        $hashedPassword = Hash::make($password);
 
         if (!is_null(request('image'))) {
             request()->validate([
@@ -116,6 +134,9 @@ class UserController extends Controller
             'image_path' => request('image_path'),
             'password' => $hashedPassword,
         ])->assignRole('employee');
+
+        Mail::to($user->email)
+            ->send(new UserCreated($user, $password));
 
         return redirect()->route('user.index')
             ->with('flashMessage', 'Dodano użytkownika "' . $user->name . " " . $user->surname . '"');

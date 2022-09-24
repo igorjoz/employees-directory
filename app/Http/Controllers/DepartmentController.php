@@ -14,12 +14,23 @@ class DepartmentController extends Controller
      */
     public function index()
     {
-        $departments = Department::withCount('users')->get();
+        $filter = request()->query('filter');
+
+        if (!empty($filter)) {
+            $departments = Department::sortable()
+                ->where('name', 'like', '%' . $filter . '%')
+                ->paginate(25);
+        } else {
+            $departments = Department::withCount('users')
+                ->sortable()
+                ->paginate(25);
+        }
 
         return view(
             'department.index',
             [
                 'departments' => $departments,
+                'filter' => $filter,
             ]
         );
     }

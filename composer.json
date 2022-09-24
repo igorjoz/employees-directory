@@ -9,6 +9,7 @@
         "guzzlehttp/guzzle": "^7.2",
         "infyomlabs/laravel-ui-adminlte": "^5.1",
         "intervention/image": "^2.7",
+        "kyslik/column-sortable": "^6.4",
         "laravel/framework": "^9.19",
         "laravel/sanctum": "^3.0",
         "laravel/tinker": "^2.7",
