@@ -8,23 +8,36 @@
             Lista użytkowników
         </h1>
 
+        <form class="form-inline" method="GET">
+            <div class="form-group mb-2">
+            <input type="text" class="form-control" id="filter" name="filter" placeholder="Przeszukaj użytkowników" value="{{$filter}}">
+            </div>
+            <button type="submit" class="btn btn-default mb-2">Wyszukaj</button>
+        </form>
+
         <table class="table table-bordered table-hover">
             <thead>
                 <tr>
-                    <th scope="col" class="table__header">ID</th>
-                    <th scope="col" class="table__header">Imię</th>
-                    <th scope="col" class="table__header">Nazwisko</th>
-                    <th scope="col" class="table__header">Email</th>
+                    <th scope="col" class="table__header">@sortablelink('id', 'ID')</th>
+                    <th scope="col" class="table__header">@sortablelink('name', 'Imię')</th>
+                    <th scope="col" class="table__header">@sortablelink('surname', 'Nazwisko')</th>
+                    <th scope="col" class="table__header">@sortablelink('email', 'Email')</th>
                     <th scope="col" class="table__header">Numer telefonu</th>
                     <th scope="col" class="table__header">Opis</th>
                     <th scope="col" class="table__header">Rola</th>
                     <th scope="col" class="table__header">Ilość działów</th>
                     <th scope="col" class="table__header">Działy</th>
-                    <th scope="col" class="table__header">Data stworzenia</th>
+                    <th scope="col" class="table__header">@sortablelink('created_at', 'Data stworzenia')</th>
                     <th scope="col" class="table__header">Akcje</th>
                 </tr>
             </thead>
             <tbody>
+                @if ($users->count() == 0)
+                <tr>
+                    <td colspan="5">Brak użytkowników do wyświetlenia</td>
+                </tr>
+                @endif
+
                 @forelse ($users as $user)
                 <tr>
                     <th scope="row" class="table__cell">
@@ -101,6 +114,8 @@
                 @endforelse
             </tbody>
         </table>
+
+        {!! $users->appends(Request::except('page'))->render() !!}
 
     </div>
 @endsection

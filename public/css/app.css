@@ -41792,6 +41792,10 @@ html {
   color: white;
   text-decoration: underline;
 }
+.panel__search-header {
+  margin-right: 80px;
+  padding-left: 50px;
+}
 
 .crud__info-section-wrapper {
   display: flex;

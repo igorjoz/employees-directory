@@ -8,19 +8,33 @@
             Lista działów
         </h1>
 
+        
+        <form class="form-inline" method="GET">
+            <div class="form-group mb-2">
+            <input type="text" class="form-control" id="filter" name="filter" placeholder="Nazwa działu" value="{{$filter}}">
+            </div>
+            <button type="submit" class="btn btn-default mb-2">Wyszukaj</button>
+        </form>
+
         <table class="table table-bordered table-hover">
             <thead>
                 <tr>
-                    <th scope="col" class="table__header">ID</th>
-                    <th scope="col" class="table__header">Nazwa</th>
+                    <th scope="col" class="table__header">@sortablelink('id', 'ID')</th>
+                    <th scope="col" class="table__header">@sortablelink('name', 'Nazwa')</th>
                     <th scope="col" class="table__header">Opis</th>
                     <th scope="col" class="table__header">Ilość pracowników</th>
                     <th scope="col" class="table__header">Pracownicy działu</th>
-                    <th scope="col" class="table__header">Data stworzenia</th>
+                    <th scope="col" class="table__header">@sortablelink('created_at', 'Data stworzenia')</th>
                     <th scope="col" class="table__header">Akcje</th>
                 </tr>
             </thead>
             <tbody>
+                @if ($departments->count() == 0)
+                <tr>
+                    <td colspan="5">Brak departamentów do wyświetlenia</td>
+                </tr>
+                @endif
+
                 @forelse ($departments as $department)
                 <tr>
                     <th scope="row" class="table__cell">
@@ -81,6 +95,8 @@
                 @endforelse
             </tbody>
         </table>
+
+        {!! $departments->appends(Request::except('page'))->render() !!}
 
     </div>
 @endsection
