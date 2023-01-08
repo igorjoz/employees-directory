@@ -56,6 +56,7 @@ class UserController extends Controller
 
         if (!empty($filter)) {
             $users = User::sortable()
+                ->withCount(['departments'])
                 ->where('name', 'like', '%' . $filter . '%')
                 ->orWhere('surname', 'like', '%' . $filter . '%')
                 ->orWhere('email', 'like', '%' . $filter . '%')
@@ -164,7 +165,7 @@ class UserController extends Controller
      * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function edit(User $user)
+    public function edit()
     {
         if (request()->route()->getName() == "user.edit_account") {
             $userId = Auth::user()->id;

@@ -18,6 +18,7 @@ class DepartmentController extends Controller
 
         if (!empty($filter)) {
             $departments = Department::sortable()
+                ->withCount('users')
                 ->where('name', 'like', '%' . $filter . '%')
                 ->paginate(25);
         } else {
