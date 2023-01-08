@@ -115,7 +115,7 @@
             </tbody>
         </table>
 
-        {!! $users->appends(Request::except('page'))->render() !!}
+        {{ $users->withQueryString()->links() }}
 
     </div>
 @endsection

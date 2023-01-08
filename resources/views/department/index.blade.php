@@ -3,12 +3,10 @@
 @section('content')
     <div class="container-fluid panel__text-container">
 
-        
         <h1 class="text-black panel__welcome-header">
             Lista działów
         </h1>
 
-        
         <form class="form-inline" method="GET">
             <div class="form-group mb-2">
             <input type="text" class="form-control" id="filter" name="filter" placeholder="Nazwa działu" value="{{$filter}}">
@@ -96,7 +94,7 @@
             </tbody>
         </table>
 
-        {!! $departments->appends(Request::except('page'))->render() !!}
+        {{ $departments->withQueryString()->links() }}
 
     </div>
 @endsection

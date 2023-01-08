@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pl">
 <head>
     <meta charset="UTF-8">
     <title>{{ config('app.name') }}</title>
@@ -80,7 +80,9 @@
 
     <!-- Main Footer -->
     <footer class="main-footer">        
-        <strong>Copyright &copy; 2022 <a href="igorjozefowicz.com">EmployeesDir</a>.</strong> All rights
+        <strong>
+            Copyright &copy; 2022 <a href="https://igorjoz.com">EmployeesDir</a>.
+        </strong> All rights
         reserved.
     </footer>
 </div>
